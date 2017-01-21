@@ -1,0 +1,11 @@
+{
+  "name": "codest",
+  "version": "1.0.0",
+  "description": "Simple ghost theme",
+  "main": " ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "diode",
+  "license": "ISC"
+}

@@ -1,0 +1,54 @@
+{{> head}}
+<section class="content">
+  {{#post}}
+    <div class="post">
+      <div class="post-details">
+        <h1>{{title}}</h1>
+        <div class="post-info">
+          <label><i class="fa fa-calendar" aria-hidden="true"></i>{{date published_at format="Do MMMM, YYYY"}} ({{date published_at timeago="true"}})</label>
+          <label><i class="fa fa-user" aria-hidden="true"></i>{{author}}</label>
+        </div>
+        <div class="post-tags">
+          {{tags separator=" | "}}
+        </div>
+      </div>
+      <div id="jShare"></div>
+    </div>
+    <div class="post-content">
+      {{content}}
+    </div>
+    <div class="posts-nav">
+      {{#next_post}}
+        <a class="post-newer"  href="{{url}}"><i class="fa fa-backward" aria-hidden="true"></i> Newer</a>
+      {{/next_post}}
+      {{#prev_post}}
+        <a class="post-older"  href="{{url}}">Older <i class="fa fa-forward" aria-hidden="true"></i></a>
+      {{/prev_post}}
+    </div>
+  {{/post}}
+  <section id="social-threads" class="social-comments">
+    <nav>
+      <ul>
+        <li class="active"><a data-tab="fbComments"><i class="fa fa-facebook-square"></i></a></li>
+        <li><a data-tab="gComments"><i class="fa fa-google-plus-square"></i></a></li>
+      </ul>
+    </nav>
+    <div class="social-comment-tabs">
+      <script src="https://apis.google.com/js/plusone.js"></script>
+      <div id="gComments" style="display:none"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+      <div id="fbComments" class="fb-comments"  class="comment-tab facebook"
+           data-href="{{@blog.url}}{{post.url}}" data-width="100%" data-numposts="5"></div>
+    </div>
+  </section>
+
+
+</section>
+{{> tail}}

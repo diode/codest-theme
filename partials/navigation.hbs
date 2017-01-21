@@ -1,0 +1,10 @@
+<!-- Default navigation template html -->
+<div class="nav-wrapper">
+    <ul class="nav">
+        <!-- Loop through the navigation items -->
+        {{#foreach navigation}}
+        <li class="nav-{{slug}}{{#if current}} nav-current{{/if}}"><a href="{{url absolute="true"}}"> <i class="fa fa-hand-o-right" aria-hidden="true"></i> {{label}}</a></li>
+        {{/foreach}}
+        <!-- End the loop -->
+    </ul>
+</div>

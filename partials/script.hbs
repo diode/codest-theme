@@ -1,0 +1,76 @@
+<script type="text/javascript">
+  var config, isPost = false, jsType = "";
+  config = {
+    fontCSS:{
+      Roboto : "{{asset "fonts/roboto/roboto.css"}}"
+    }
+  };
+
+  if(document.querySelector){
+    var editor = document.querySelector(".code-editor");
+    if(editor){
+      editor.innerHTML += '<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>';
+    }
+  }
+</script>
+<script src="{{asset "scripts/third/jquery-3.1.1.min.js"}}" type="text/javascript"> </script>
+<script src="{{asset "scripts/third/jssocials-1.4.0/jssocials.min.js"}}" type="text/javascript"> </script>
+{{#if post}}
+  <script type="text/javascript">
+    isPost = true;
+  </script>
+  {{#post}}
+    <script src="{{asset "scripts/third/magnific-popup/jquery.magnific-popup.min.js"}}" type="text/javascript"> </script>
+    {{#has tag="stylus"}}
+      <script src="{{asset "scripts/third/jotted/plugins/stylus.min.js"}}" type="text/javascript"></script>
+    {{/has}}
+    {{#has tag="less"}}
+      <script src="{{asset "scripts/third/jotted/plugins/less.min.js"}}" type="text/javascript"></script>
+    {{/has}}
+    {{#has tag="coffeescript"}}
+      <script src="{{asset "scripts/third/jotted/plugins/coffee-script.js"}}" type="text/javascript"></script>
+    {{/has}}
+    {{#has tag="babel"}}
+      <script src="{{asset "scripts/third/jotted/plugins/babel-5.8.34.min.js"}}" type="text/javascript"></script>
+      <script src="{{asset "scripts/third/jotted/plugins/babel-5.8.34-polyfill.min.js"}}" type="text/javascript"></script>
+      <script type="text/javascript">
+        jsType = "ES6/ES7";
+      </script>
+    {{/has}}
+    {{#has tag="code"}}
+      <script src="{{asset "scripts/third/ace/ace.js"}}" type="text/javascript"></script>
+      <script src="{{asset "scripts/third/jotted/jotted.min.js"}}" type="text/javascript"></script>
+      <script type="text/javascript" src="{{asset "scripts/default.js"}}"></script>
+    {{/has}}
+    {{#has tag="react"}}
+      <script type="text/javascript">
+        jsType = "JSX";
+      </script>
+    {{/has}}
+  {{/post}}
+{{/if}}
+<script type="text/javascript">
+
+  $(document).ready(function(e){
+    $("#jShare").jsSocials({
+        shares: ["twitter", "facebook", "linkedin", "whatsapp"]
+    });
+    if(isPost){
+      $('.post-content a:not(".img-popup,.img-link") img').unwrap();
+      $('.post-content .img-popup').magnificPopup({type:'image'});
+      $('.social-comments nav a').click(function(){
+        $('.social-comments nav li').removeClass("active").filter($(this).parent()).addClass("active");
+        $('#gComments, #fbComments').hide().filter('#' + $(this).data("tab")).show();
+        if($(this).data("tab") == "gComments" && !$("#gComments>iframe").length){
+          gapi.comments.render('gComments', {
+              href: "{{@blog.url}}{{post.url}}",
+              first_party_property: 'BLOGGER',
+              width: Math.floor($(".social-comments").width()),
+              view_type: 'FILTERED_POSTMOD'
+          });
+        }
+      });
+    }
+  });
+
+</script>

@@ -1,0 +1,23 @@
+{{> head}}
+<section class="content">
+  <ul class="posts">
+    {{#foreach posts}}
+      <li>
+          <div class="post-details">
+            <a href="{{url}}"><h3>{{title}}</h3></a>
+            {{!--<div class="excerpt">{{excerpt}}... <a href="{{url}}"><i class="fa fa-window-restore" aria-hidden="true"></i></a></div>--}}
+            <div class="post-info">
+              <label><i class="fa fa-calendar" aria-hidden="true"></i>{{date published_at format="MMMM DD, YYYY" timeago="true"}}</label>
+              <label><i class="fa fa-user" aria-hidden="true"></i>{{author}}</label>
+            </div>
+            <div class="post-tags">
+              {{tags separator=" | "}}
+            </div>
+
+          </div>
+      </li>
+    {{/foreach}}
+  </ul>
+  {{pagination}}
+</section>
+{{> tail}}

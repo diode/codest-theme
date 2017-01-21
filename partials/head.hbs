@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{!-- Document Settings --}}
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  {{!-- Page Meta --}}
+  <title>{{#is 'home'}}{{@blog.title}}{{else}}{{meta_title}}{{/is}}</title>
+  <meta name="description" content="{{meta_description}}" />
+
+  {{!-- Mobile Meta --}}
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="mask-icon" type="" href="" color="#111" />
+
+  <link rel=stylesheet href="{{asset "css/main.css"}}" type="text/css" media=screen>
+  <link rel=stylesheet href="{{asset "scripts/third/magnific-popup/magnific-popup.css"}}" type="text/css" media=screen>
+  <link rel=stylesheet href="{{asset "scripts/third/jssocials-1.4.0/jssocials.css"}}" type="text/css">
+  <link rel=stylesheet href="{{asset "scripts/third/jssocials-1.4.0/jssocials-theme-minima.css"}}" type="text/css">
+  <link rel="stylesheet" type="text/css" href="{{asset "scripts/third/jotted/jotted.min.css"}}">
+
+
+</head>
+<body class="font-ready">
+
+  {{!<div class="loading">
+    <span class="f1">
+      Loading.
+    </span>
+    <span class="f2">
+      Please
+    </span>
+    <span class="f3">
+      wait...
+    </span>
+  </div>--}}
+
+  <div class="wrap">
+
+    <section class="left-side">
+      <div class="blog-info">
+        {{#if @blog.logo}}
+          <a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="Blog Logo" /></a>
+        {{else}}
+          <a class="blog-title" href="{{@blog.url}}"><h2>{{@blog.title}}</h2></a>
+        {{/if}}
+        {{> social-links}}
+        <p class="blog-description">{{@blog.description}}</p>
+      </div>
+      {{#if posts}}
+        <div id="jShare"></div>
+      {{/if}}
+    </section>
